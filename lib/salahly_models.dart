@@ -6,3 +6,6 @@ export 'package:salahly_models/models/location.dart';
 export 'package:salahly_models/models/mechanic.dart';
 export 'package:salahly_models/models/towProvider.dart';
 export 'package:salahly_models/models/workShop.dart';
+export 'package:salahly_models/models/road_side_assistance.dart';
+
+export 'package:salahly_models/util/validation.dart';

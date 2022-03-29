@@ -1,6 +1,6 @@
 name: salahly_models
 description: Models of the Salahly applications
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/sergi-s/Salahly-models-Package
 
 environment:
@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
+  string_validator: ^0.3.0
 
 dev_dependencies:
   flutter_test:
