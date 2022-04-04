@@ -4,21 +4,23 @@ enum AccountState { active, block }
 enum Gender { none, male, female }
 enum Type { client, mechanic, provider, admin }
 
+
 abstract class UserType {
+  Type? type = Type.client;
+
   String? name;
   String? id;
   String? avatar;
   DateTime? birthDay;
-  String? createdDate;
+  DateTime? createdDate;
   String? email;
-  String? _password;
   String? phoneNumber;
   String? address;
   CustomLocation? loc;
 
+  // final Language lang;
   Gender? gender;
-  Type? type;
-  AccountState? state;
+  AccountState? userState;
 
   UserType({
     this.id,
@@ -26,24 +28,27 @@ abstract class UserType {
     required this.email,
     this.birthDay,
     this.createdDate,
-    this.state,
+    this.userState,
     this.gender,
     this.type,
     this.avatar,
     this.loc,
     this.phoneNumber,
+    this.address,
   });
 
-  String get password => _password!;
+  final Map<Type, String> _getType = {
+    Type.mechanic: "Mechanic",
+    Type.provider: "Tow Provider",
+  };
 
-  set setPassword(String value) {
-    _password = value;
+  String? getUserType() {
+    return _getType.containsKey(type) ? _getType[type] : "";
   }
 
   bool isValid() {
     return (emailValidate(email!) &&
-        nameValidate(name!) &&
-        passValidate(password));
+        nameValidate(name!));
   }
 
   //Validation

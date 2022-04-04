@@ -15,4 +15,3 @@ class WorkShop {
       this.phoneNumber,
       required this.loc});
 }
-

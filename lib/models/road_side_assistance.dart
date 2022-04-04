@@ -2,11 +2,13 @@ import 'package:salahly_models/models/towProvider.dart';
 import 'package:salahly_models/models/client.dart';
 import 'package:salahly_models/models/location.dart';
 import 'package:salahly_models/models/mechanic.dart';
+import 'package:salahly_models/models/report.dart';
 
 class RSA {
   RSAStates _state = RSAStates.created;
   CustomLocation? _location; // lazm yt2sm le long w lat
   String? _rsaID;
+  Report? _report;
 
   ///
   String? _problemDescription;
@@ -19,17 +21,23 @@ class RSA {
   List<Mechanic>? _nearbyMechanics; // not included in FB
   List<TowProvider>? _nearbyProviders; // not included in FB
 
-  RSA(
-      {Mechanic? mechanic,
-      TowProvider? towProvider,
-      RSAStates? state,
-      String? problemDescription,
-      List<Mechanic>? nearbyMechanics,
-      List<TowProvider>? nearbyProviders,
-      CustomLocation? location,
-      String? rsaID,
-      Client? user,
-      DateTime? estimatedTime}) {
+  CustomLocation? _dropOffLocation;
+
+  RSA({
+    Report? report,
+    Mechanic? mechanic,
+    TowProvider? towProvider,
+    RSAStates? state,
+    String? problemDescription,
+    List<Mechanic>? nearbyMechanics,
+    List<TowProvider>? nearbyProviders,
+    CustomLocation? location,
+    String? rsaID,
+    Client? user,
+    DateTime? estimatedTime,
+    CustomLocation? dropOffLocation,
+  }) {
+    _report = report ?? _report;
     _mechanic = mechanic ?? _mechanic;
     _towProvider = towProvider ?? _towProvider;
     _state = state ?? _state;
@@ -40,30 +48,37 @@ class RSA {
     _rsaID = rsaID ?? _rsaID;
     _user = user ?? _user;
     _estimatedTime = estimatedTime ?? _estimatedTime;
+    _dropOffLocation = dropOffLocation ?? _dropOffLocation;
   }
 
-  RSA copyWith(
-          {Mechanic? mechanic,
-          TowProvider? provider,
-          RSAStates? state,
-          String? problemDescription,
-          List<Mechanic>? nearbyMechanics,
-          List<TowProvider>? nearbyProviders,
-          CustomLocation? location,
-          String? rsaID,
-          Client? user,
-          DateTime? estimatedTime}) =>
+  RSA copyWith({
+    Report? report,
+    Mechanic? mechanic,
+    TowProvider? provider,
+    RSAStates? state,
+    String? problemDescription,
+    List<Mechanic>? nearbyMechanics,
+    List<TowProvider>? nearbyProviders,
+    CustomLocation? location,
+    String? rsaID,
+    Client? user,
+    DateTime? estimatedTime,
+    CustomLocation? dropOffLocation,
+  }) =>
       RSA(
-          mechanic: mechanic ?? _mechanic,
-          towProvider: provider ?? _towProvider,
-          state: state ?? _state,
-          problemDescription: problemDescription ?? _problemDescription,
-          nearbyMechanics: nearbyMechanics ?? _nearbyMechanics,
-          nearbyProviders: nearbyProviders ?? _nearbyProviders,
-          location: location ?? _location,
-          rsaID: rsaID ?? _rsaID,
-          user: user ?? _user,
-          estimatedTime: estimatedTime ?? _estimatedTime);
+        report: report ?? _report,
+        mechanic: mechanic ?? _mechanic,
+        towProvider: provider ?? _towProvider,
+        state: state ?? _state,
+        problemDescription: problemDescription ?? _problemDescription,
+        nearbyMechanics: nearbyMechanics ?? _nearbyMechanics,
+        nearbyProviders: nearbyProviders ?? _nearbyProviders,
+        location: location ?? _location,
+        rsaID: rsaID ?? _rsaID,
+        user: user ?? _user,
+        estimatedTime: estimatedTime ?? _estimatedTime,
+        dropOffLocation: dropOffLocation ?? _dropOffLocation,
+      );
 
   //Getters
   CustomLocation? get location => _location;
@@ -85,6 +100,8 @@ class RSA {
   RSAStates get state => _state;
 
   String? get rsaID => _rsaID;
+
+  CustomLocation? get dropOffLocation => _dropOffLocation;
 
   static String stateToString(RSAStates state) {
     return (state.toString()).isNotEmpty
@@ -123,7 +140,6 @@ enum RSAStates {
   mechanicConfirmed,
   waitingForProviderResponse,
   providerConfirmed,
-
   waitingForArrival,
   confirmedArrival,
   done

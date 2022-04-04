@@ -1,21 +1,20 @@
 import 'package:salahly_models/abstract_classes/user.dart';
 import 'package:salahly_models/models/location.dart';
-
 class TowProvider extends UserType {
   String? nationalID;
+  bool? isCenter;
   bool? isAccepted;
   double? rating;
-  bool? isAvailable;
 
   List<TowDriver> towDriver = [];
 
   TowProvider({
-    String? name,
+    required String? name,
     required String? email,
     this.rating,
     String? id,
     DateTime? birthDay,
-    String? createdDate,
+    DateTime? createdDate,
     AccountState? userState,
     Gender? gender,
     Type? type,
@@ -24,6 +23,7 @@ class TowProvider extends UserType {
     String? phoneNumber,
     CustomLocation? loc,
     this.isAccepted,
+    this.isCenter,
     this.nationalID,
   }) : super(
             name: name,
@@ -31,17 +31,13 @@ class TowProvider extends UserType {
             id: id,
             birthDay: birthDay,
             createdDate: createdDate,
-            state: userState,
+            userState: userState,
             gender: gender,
             type: type,
             avatar: avatar,
             loc: loc,
-            phoneNumber: phoneNumber);
-
-  @override
-  set setPassword(String value) {
-    super.setPassword = value;
-  }
+            phoneNumber: phoneNumber,
+            address: address);
 
   @override
   bool isValid() {
@@ -56,9 +52,11 @@ class TowProvider extends UserType {
 
 class TowDriver {
   String nationalID;
+  bool isCenter;
   bool isAccepted;
   String name;
-  DateTime hireDate;
+  String hireDate;
 
-  TowDriver(this.nationalID, this.isAccepted, this.name, this.hireDate);
+  TowDriver(this.nationalID, this.isCenter, this.isAccepted, this.name,
+      this.hireDate);
 }

@@ -6,43 +6,37 @@ class Mechanic extends UserType {
   bool? isCenter;
   bool? isAccepted;
   double? rating;
-  bool? isAvailable;
 
   Mechanic({
-    String? name,
+    required String? name,
     required String? email,
     this.rating,
     String? id,
     DateTime? birthDay,
-    String? createdDate,
+    DateTime? createdDate,
     AccountState? userState,
     Gender? gender,
     Type? type,
     String? avatar,
     CustomLocation? loc,
     String? phoneNumber,
+    String? address,
     this.isAccepted,
     this.isCenter,
     this.nationalID,
-    this.isAvailable,
   }) : super(
-          name: name,
-          email: email,
-          id: id,
-          birthDay: birthDay,
-          createdDate: createdDate,
-          state: userState,
-          gender: gender,
-          type: type,
-          avatar: avatar,
-          loc: loc,
-          phoneNumber: phoneNumber,
-        );
-
-  @override
-  set setPassword(String value) {
-    super.setPassword = value;
-  }
+            name: name,
+            email: email,
+            id: id,
+            birthDay: birthDay,
+            createdDate: createdDate,
+            userState: userState,
+            gender: gender,
+            type: type,
+            avatar: avatar,
+            loc: loc,
+            phoneNumber: phoneNumber,
+            address: address);
 
   @override
   bool isValid() {

@@ -8,4 +8,7 @@ export 'package:salahly_models/models/towProvider.dart';
 export 'package:salahly_models/models/workShop.dart';
 export 'package:salahly_models/models/road_side_assistance.dart';
 
+export 'package:salahly_models/models/report.dart';
+export 'package:salahly_models/models/place_prediction';
+
 export 'package:salahly_models/util/validation.dart';
