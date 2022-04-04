@@ -9,6 +9,7 @@ class RSA {
   CustomLocation? _location; // lazm yt2sm le long w lat
   String? _rsaID;
   Report? _report;
+  Car? _car;
 
   ///
   String? _problemDescription;
@@ -36,6 +37,7 @@ class RSA {
     Client? user,
     DateTime? estimatedTime,
     CustomLocation? dropOffLocation,
+    Car? car,
   }) {
     _report = report ?? _report;
     _mechanic = mechanic ?? _mechanic;
@@ -49,6 +51,7 @@ class RSA {
     _user = user ?? _user;
     _estimatedTime = estimatedTime ?? _estimatedTime;
     _dropOffLocation = dropOffLocation ?? _dropOffLocation;
+    _car = car??_car;
   }
 
   RSA copyWith({
@@ -64,6 +67,7 @@ class RSA {
     Client? user,
     DateTime? estimatedTime,
     CustomLocation? dropOffLocation,
+    Car? car,
   }) =>
       RSA(
         report: report ?? _report,
@@ -78,6 +82,7 @@ class RSA {
         user: user ?? _user,
         estimatedTime: estimatedTime ?? _estimatedTime,
         dropOffLocation: dropOffLocation ?? _dropOffLocation,
+        car:car??_car,
       );
 
   //Getters
@@ -102,6 +107,8 @@ class RSA {
   String? get rsaID => _rsaID;
 
   CustomLocation? get dropOffLocation => _dropOffLocation;
+
+  Car? get car =>_car;
 
   static String stateToString(RSAStates state) {
     return (state.toString()).isNotEmpty
