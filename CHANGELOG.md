@@ -1,4 +1,5 @@
-## 0.0.3
+## 0.1.1
 
-Add report and place prediction models
-Update models
+Add car to RSA model
+
+Fixing errors

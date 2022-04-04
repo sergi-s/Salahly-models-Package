@@ -3,6 +3,7 @@ import 'package:salahly_models/models/client.dart';
 import 'package:salahly_models/models/location.dart';
 import 'package:salahly_models/models/mechanic.dart';
 import 'package:salahly_models/models/report.dart';
+import 'package:salahly_models/models/car.dart';
 
 class RSA {
   RSAStates _state = RSAStates.created;
@@ -51,7 +52,7 @@ class RSA {
     _user = user ?? _user;
     _estimatedTime = estimatedTime ?? _estimatedTime;
     _dropOffLocation = dropOffLocation ?? _dropOffLocation;
-    _car = car??_car;
+    _car = car ?? _car;
   }
 
   RSA copyWith({
@@ -82,7 +83,7 @@ class RSA {
         user: user ?? _user,
         estimatedTime: estimatedTime ?? _estimatedTime,
         dropOffLocation: dropOffLocation ?? _dropOffLocation,
-        car:car??_car,
+        car: car ?? _car,
       );
 
   //Getters
@@ -108,7 +109,7 @@ class RSA {
 
   CustomLocation? get dropOffLocation => _dropOffLocation;
 
-  Car? get car =>_car;
+  Car? get car => _car;
 
   static String stateToString(RSAStates state) {
     return (state.toString()).isNotEmpty
