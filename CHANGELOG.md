@@ -1,5 +1,5 @@
-## 0.1.1
+## 0.1.2
 
-Add car to RSA model
-
-Fixing errors
+Add type in RSA class (RSA, TTA, WSA)
+<br>
+Additional helper function in RSA class

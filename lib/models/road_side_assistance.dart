@@ -5,12 +5,17 @@ import 'package:salahly_models/models/mechanic.dart';
 import 'package:salahly_models/models/report.dart';
 import 'package:salahly_models/models/car.dart';
 
+enum RequestType { RSA, WSA, TTA }
+
 class RSA {
   RSAStates _state = RSAStates.created;
   CustomLocation? _location; // lazm yt2sm le long w lat
   String? _rsaID;
   Report? _report;
   Car? _car;
+
+  ///
+  RequestType? _requestType;
 
   ///
   String? _problemDescription;
@@ -25,6 +30,7 @@ class RSA {
 
   CustomLocation? _dropOffLocation;
 
+  ///
   RSA({
     Report? report,
     Mechanic? mechanic,
@@ -39,6 +45,7 @@ class RSA {
     DateTime? estimatedTime,
     CustomLocation? dropOffLocation,
     Car? car,
+    RequestType? requestType,
   }) {
     _report = report ?? _report;
     _mechanic = mechanic ?? _mechanic;
@@ -53,6 +60,7 @@ class RSA {
     _estimatedTime = estimatedTime ?? _estimatedTime;
     _dropOffLocation = dropOffLocation ?? _dropOffLocation;
     _car = car ?? _car;
+    _requestType = requestType ?? _requestType;
   }
 
   RSA copyWith({
@@ -69,6 +77,7 @@ class RSA {
     DateTime? estimatedTime,
     CustomLocation? dropOffLocation,
     Car? car,
+    RequestType? requestType,
   }) =>
       RSA(
         report: report ?? _report,
@@ -84,6 +93,7 @@ class RSA {
         estimatedTime: estimatedTime ?? _estimatedTime,
         dropOffLocation: dropOffLocation ?? _dropOffLocation,
         car: car ?? _car,
+        requestType: requestType ?? _requestType,
       );
 
   //Getters
@@ -103,6 +113,8 @@ class RSA {
 
   List<TowProvider>? get nearbyProviders => _nearbyProviders;
 
+  RequestType? get requestType => _requestType;
+
   RSAStates get state => _state;
 
   String? get rsaID => _rsaID;
@@ -116,6 +128,48 @@ class RSA {
         ? (state.toString()).substring(10)
         : "";
     // deletes "RSAStates." at the beginning
+  }
+
+  static String typeToString(RequestType requestType) {
+    return (requestType.toString()).isNotEmpty
+        ? (requestType.toString().substring(12))
+        : "";
+  }
+
+  RequestType? stringToRequestType(String id) {
+    if (id == RSA.typeToString(RequestType.RSA)) {
+      return RequestType.RSA;
+    } else if (id == RSA.typeToString(RequestType.WSA)) {
+      return RequestType.WSA;
+    } else if (id == RSA.typeToString(RequestType.TTA)) {
+      return RequestType.TTA;
+    }
+    return null;
+  }
+
+  RSAStates stringToState(String id) {
+    if (id == RSA.stateToString(RSAStates.waitingForMechanicResponse)) {
+      return RSAStates.waitingForMechanicResponse;
+    } else if (id == RSA.stateToString(RSAStates.waitingForProviderResponse)) {
+      RSAStates.waitingForProviderResponse;
+    } else if (id == RSA.stateToString(RSAStates.requestingRSA)) {
+      RSAStates.requestingRSA;
+    } else if (id == RSA.stateToString(RSAStates.failedToRequestRSA)) {
+      RSAStates.failedToRequestRSA;
+    } else if (id == RSA.stateToString(RSAStates.created)) {
+      RSAStates.created;
+    } else if (id == RSA.stateToString(RSAStates.done)) {
+      RSAStates.done;
+    } else if (id == RSA.stateToString(RSAStates.mechanicConfirmed)) {
+      RSAStates.mechanicConfirmed;
+    } else if (id == RSA.stateToString(RSAStates.providerConfirmed)) {
+      RSAStates.providerConfirmed;
+    } else if (id == RSA.stateToString(RSAStates.waitingForArrival)) {
+      RSAStates.waitingForArrival;
+    } else if (id == RSA.stateToString(RSAStates.confirmedArrival)) {
+      RSAStates.confirmedArrival;
+    }
+    return RSAStates.canceled;
   }
 }
 /*
