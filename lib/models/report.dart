@@ -1,16 +1,15 @@
 class Report {
-  String? systemName, boardId, maintenanceDescription, partName;
-  double? actualDistance, partCost, maintenanceCost, otherCost;
+  String? systemName, partID, maintenanceDescription, partName, carType;
+  double? actualDistance, partCost, maintenanceCost, otherCost, distance;
 
   Report(
       // TODO to be tested
       {this.actualDistance,
-      this.boardId,
+      this.partID,
       this.maintenanceCost,
       this.maintenanceDescription,
       this.otherCost,
       this.partCost,
       this.partName,
       this.systemName});
-
 }

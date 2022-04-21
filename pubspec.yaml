@@ -1,6 +1,6 @@
 name: salahly_models
 description: Models of the Salahly applications
-version: 0.1.2
+version: 0.1.4
 homepage: https://github.com/sergi-s/Salahly-models-Package
 
 environment:

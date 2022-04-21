@@ -130,24 +130,24 @@ class RSA {
     // deletes "RSAStates." at the beginning
   }
 
-  static String typeToString(RequestType requestType) {
+  static String requestTypeToString(RequestType requestType) {
     return (requestType.toString()).isNotEmpty
         ? (requestType.toString().substring(12))
         : "";
   }
 
-  RequestType? stringToRequestType(String id) {
-    if (id == RSA.typeToString(RequestType.RSA)) {
+  static RequestType? stringToRequestType(String id) {
+    if (id == RSA.requestTypeToString(RequestType.RSA)) {
       return RequestType.RSA;
-    } else if (id == RSA.typeToString(RequestType.WSA)) {
+    } else if (id == RSA.requestTypeToString(RequestType.WSA)) {
       return RequestType.WSA;
-    } else if (id == RSA.typeToString(RequestType.TTA)) {
+    } else if (id == RSA.requestTypeToString(RequestType.TTA)) {
       return RequestType.TTA;
     }
     return null;
   }
 
-  RSAStates stringToState(String id) {
+  static RSAStates stringToState(String id) {
     if (id == RSA.stateToString(RSAStates.waitingForMechanicResponse)) {
       return RSAStates.waitingForMechanicResponse;
     } else if (id == RSA.stateToString(RSAStates.waitingForProviderResponse)) {
