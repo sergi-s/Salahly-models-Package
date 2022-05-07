@@ -123,6 +123,8 @@ class RSA {
 
   Car? get car => _car;
 
+  Report? get report => _report;
+
   static String stateToString(RSAStates state) {
     return (state.toString()).isNotEmpty
         ? (state.toString()).substring(10)
